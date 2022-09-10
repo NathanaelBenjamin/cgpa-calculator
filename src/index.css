@@ -1,0 +1,51 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+*{
+    font-family: 'Montserrat', sans-serif;
+}
+
+.container{
+    min-height: 100vh;
+    min-width: 100vw;
+}
+
+.quotes{
+    background-image: url(./Images/leon-wu-LLfRMRT-9AY-unsplash.jpg);
+    background-position: center;
+    background-size: cover;
+    background-blend-mode: darken;
+    background-color: rgba(0, 0, 0, .8);
+    height: 72vh;
+}
+
+.flex-center{
+    @apply flex flex-col items-center;
+}
+
+blockquote{
+    font-family: 'Montez', cursive;
+}
+
+.quote-author{
+    font-family: 'Montserrat', sans-serif;
+}
+
+button.option{
+    background-color: #0f766e;
+    @apply rounded px-4 py-2 text-gray-100 md:w-44 text-center;
+}
+
+button.option:hover{
+    scale: 1.05;
+    transition: all ease-in-out .3s;
+}
+
+table{
+    overflow-x: scroll;
+}
+
+th, tr, td{
+    @apply p-3;
+}
