@@ -12,7 +12,7 @@ const Result = ({ result, text, resultClass }) => {
         Here's your result!
 
         <div>
-            {text}: {result} and you're on {}
+            {text}: {result} {resultClass && <span> and you're on {resultClass}.</span>}
         </div>
     </div>
   )

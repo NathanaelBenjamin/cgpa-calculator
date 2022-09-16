@@ -17,21 +17,37 @@ const Calculator = () => {
         return tableBorder;
     }
 
+    const [ courses, setCourses ] = useState([]);
+
+    const [ parameters, setParameters ] = useState({
+        gradePoints: [],
+        creditUnits: []
+    });
+
+    const [ result, setResult ] = useState(null);
+
+    const handleClearValues = () => {
+        setCourses([])
+        setResult(null)
+        setParameters(() => {
+            return {
+            gradePoint: [],
+            creditUnits: []
+            }
+        })    
+    }
+
   return (
     <div className="flex justify-center items-center">
-    <AppContext.Provider value={{ borderStyles, setMode }}>
-        <div className='calculator w-[90%] min-h-[38rem] md:w-10/12 dark:bg-gray-600 bg-gray-200 rounded py-12 px-8 -mt-40 mb-12 shadow-md shadow-gray-700 dark:shadow-gray-400'>
+    <AppContext.Provider value={{ borderStyles, setMode, courses, setCourses, parameters, setParameters, result, setResult, handleClearValues }}>
+        <div className='calculator w-[90%] min-h-[38rem] md:w-10/12 dark:bg-gray-600 bg-gray-200 rounded py-12 px-4 -mt-40 mb-12 shadow-md shadow-gray-700 dark:shadow-gray-400'>
 
             <CalculatorMenu />
 
             <div className="check-gp grid gap-8">
-                <header className='md:col-span-2 mt-4 text-center font-bold text-xl dark:text-gray-200 text-gray-600'>Calculate your GP.
-                </header>
-
-                
-                    {mode === "cgpa" ? <CgpaForm /> : (mode === 4 ? <GpaForm scale={4} /> : <GpaForm scale={5} />)}
-                
-
+                <h1 className='md:col-span-2 mt-4 text-center font-bold text-xl dark:text-gray-200 text-gray-600'>Calculate your GP.
+                </h1>
+                {mode === "cgpa" ? <CgpaForm /> : (mode === 4 ? <GpaForm scale={4} /> : <GpaForm scale={5} />)}
             </div>
         </div>
         </AppContext.Provider>

@@ -3,6 +3,7 @@ import { AppContext } from '../../CONTEXT/AppContext';
 import ClearButton from './ClearButton';
 import CalculateButton from './CalculateButton';
 import { categories } from '../../Data/resultClasses';
+import Result from './Result';
 
 const GpaForm = ({ scale }) => {
 
@@ -10,7 +11,7 @@ const GpaForm = ({ scale }) => {
 
     scale === 4 ? grades = [{grade: "F" ,l: 0, u: 44}, {grade: "D" ,l: 45, u: 49}, {grade: "C" ,l: 50, u: 59}, {grade: "B" ,l: 60, u: 69}, {grade: "A" ,l: 70, u: 100}] : grades = [{grade: "F" ,l: 0, u: 39}, {grade: "E" ,l: 40, u: 44}, {grade: "D" ,l: 45, u: 49}, {grade: "C" ,l: 50, u: 59}, {grade: "B" ,l: 60, u: 69}, {grade: "A" ,l: 70, u: 100}]; 
 
-    const [ courses, setCourses ] = useState([]);
+    const { borderStyles, courses, setCourses, parameters, setParameters, result, setResult, handleClearValues } = useContext(AppContext);
 
     const [ courseDetails, setCourseDetails ] = useState({
         name: "",
@@ -20,12 +21,9 @@ const GpaForm = ({ scale }) => {
         gradePoint: ""
     });
     
-    const [ parameters, setParameters ] = useState({
-        gradePoints: [],
-        creditUnits: []
-    });
+    
 
-    const [ result, setResult ] = useState(null);
+    
     const [ resultClass, setResultClass ] = useState("");
     
     const assignGrades = (score) => {
@@ -42,8 +40,6 @@ const GpaForm = ({ scale }) => {
             return true;
         });
     }
-    
-    const { borderStyles } = useContext(AppContext);
 
     const handleChange = ({name, value}) => {
         
@@ -84,19 +80,15 @@ const GpaForm = ({ scale }) => {
         const totalGradePoints = parameters.gradePoints.reduce((a,b) => a + b);
         const totalCreditUnits = parameters.creditUnits.reduce((a,b) => a + b);
         setResult(() => (totalGradePoints/totalCreditUnits).toFixed(2));
+        
         categories.map(item => {
             if(result && result >= item.lowerLimit && result <= item.upperLimit){
                setResultClass(item.class);
             }
             return true;
         });
-        return result;
         }
     }
-
-    // const handleClass = () => {
-        
-    // }
 
     const handleSubmit = (event) => {
         event.preventDefault();
@@ -115,8 +107,8 @@ const GpaForm = ({ scale }) => {
     }
 
     return (
-    <div className='flex flex-col items-center md:items-start md:flex-row gap-8'>
-        <form className='bg-teal-700 h-80 py-8 px-5 rounded bg-gradient-to-br from-teal-700 to-teal-600 flex flex-col justify-between w-3/4 md:w-full'
+    <div className='grid grid-cols-1 items-center md:items-start md:grid-cols-2 gap-8'>
+        <form className='bg-teal-700 h-80 py-8 px-5 rounded bg-gradient-to-br from-teal-700 to-teal-600 flex flex-col justify-between md:w-full'
             onSubmit={(event) => handleSubmit(event)}
         >
             <div className="grid gap-1">
@@ -198,21 +190,14 @@ const GpaForm = ({ scale }) => {
 
                     <ClearButton 
                         clickFunction={() => {
-                            setCourses([])
-                            setResult(null)
-                            setParameters((prev) => {
-                                return {
-                                gradePoint: [],
-                                creditUnits: []
-                                }
-                            })    
+                            handleClearValues()
                         }}
                     />
                 </div>
             }
         </div>
 
-        {result && <p>{result}, {resultClass}</p>}
+        {result && <Result result={result} text={`GPA`} resultClass={resultClass} />}
     </div>
   )
 }
