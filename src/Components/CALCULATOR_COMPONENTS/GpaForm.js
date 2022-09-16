@@ -2,14 +2,12 @@ import React, {useContext, useState } from 'react';
 import { AppContext } from '../../CONTEXT/AppContext';
 import ClearButton from './ClearButton';
 import CalculateButton from './CalculateButton';
-import { categories } from '../../Data/resultClasses';
+import { createLimits } from '../../Data/resultClasses';
 import Result from './Result';
 
 const GpaForm = ({ scale }) => {
 
-    let grades;
-
-    scale === 4 ? grades = [{grade: "F" ,l: 0, u: 44}, {grade: "D" ,l: 45, u: 49}, {grade: "C" ,l: 50, u: 59}, {grade: "B" ,l: 60, u: 69}, {grade: "A" ,l: 70, u: 100}] : grades = [{grade: "F" ,l: 0, u: 39}, {grade: "E" ,l: 40, u: 44}, {grade: "D" ,l: 45, u: 49}, {grade: "C" ,l: 50, u: 59}, {grade: "B" ,l: 60, u: 69}, {grade: "A" ,l: 70, u: 100}]; 
+    const { grades, categories } = createLimits(scale);
 
     const { borderStyles, courses, setCourses, parameters, setParameters, result, setResult, handleClearValues } = useContext(AppContext);
 
@@ -20,9 +18,6 @@ const GpaForm = ({ scale }) => {
         grade: "",
         gradePoint: ""
     });
-    
-    
-
     
     const [ resultClass, setResultClass ] = useState("");
     
