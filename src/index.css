@@ -6,9 +6,10 @@
     font-family: 'Montserrat', sans-serif;
 }
 
-.container{
+.body-container{
     min-height: 100vh;
-    min-width: 100vw;
+    width: 100%;
+    @apply dark:bg-gray-800; 
 }
 
 .quotes{
@@ -42,8 +43,8 @@ button.option:hover{
     transition: all ease-in-out .3s;
 }
 
-table{
-    overflow-x: scroll;
+th{
+    @apply dark:text-gray-200 text-gray-600;
 }
 
 th, tr, td{

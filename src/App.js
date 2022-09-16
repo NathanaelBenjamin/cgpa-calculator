@@ -4,7 +4,7 @@ import Calculator from './Components/CALCULATOR_COMPONENTS/Calculator';
 
 const App = () => {
   return (
-    <div className="container">
+    <div className="body-container">
       <RandomQuotes />
       <Calculator />
     </div>

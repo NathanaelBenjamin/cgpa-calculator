@@ -1,0 +1,217 @@
+if(scale===4){
+            if(scores.score >= 70){
+            setScores(prev => {
+                return {
+                    score: prev.score,
+                    grade: "A"
+                }
+            })
+        }
+
+        else if(scores.score < 70 && scores.score >= 60){
+            setScores(prev => {
+                return {
+                    score: prev.score,
+                    grade: "B"
+                }
+            })
+        }
+
+        else if(scores.score < 60 && scores.score >= 50){
+            setScores(prev => {
+                return {
+                    score: prev.score,
+                    grade: "C"
+                }
+            })
+        }
+
+        else if(scores.score < 50 && scores.score >= 45){
+            setScores(prev => {
+                return {
+                    score: prev.score,
+                    grade: "D"
+                }
+            })
+        }
+
+        else if(scores.score < 45 && scores.score >= 0){
+            setScores(prev => {
+                return {
+                    score: prev.score,
+                    grade: "F"
+                }
+            })
+        }}
+
+        else if(scale===5){
+            if(scores.score >= 70){
+                setScores(prev => {
+                    return {
+                        score: prev.score,
+                        grade: "A"
+                    }
+                })
+            }
+    
+            else if(scores.score < 70 && scores.score >= 60){
+                setScores(prev => {
+                    return {
+                        score: prev.score,
+                        grade: "B"
+                    }
+                })
+            }
+    
+            else if(scores.score < 60 && scores.score >= 50){
+                setScores(prev => {
+                    return {
+                        score: prev.score,
+                        grade: "C"
+                    }
+                })
+            }
+    
+            else if(scores.score < 50 && scores.score >= 45){
+                setScores(prev => {
+                    return {
+                        score: prev.score,
+                        grade: "D"
+                    }
+                })
+            }
+    
+            else if(scores.score < 45 && scores.score >= 0){
+                setScores(prev => {
+                    return {
+                        score: prev.score,
+                        grade: "F"
+                    }
+                })
+            }
+        }
+
+
+        const createScale = () => {
+        let scaleDetails;
+        if(scale===4){
+            scaleDetails = {
+                A:{high: 70, point: 4},
+                B:{high: 60, point: 3},
+                C:{high: 50, point: 2},
+                D:{high: 70, point: 1},
+                F:44
+            }
+        }
+    }
+
+
+
+    const checkGradesFour = (score) => {
+        if(score >= 70 && score <= 100){
+            setCourseDetails(prev => {
+                return {
+                    ...prev,
+                    grade: "A"
+                }
+            })
+        }
+
+        else if(score >= 60 && score <= 69){
+            setCourseDetails(prev => {
+                return {
+                    ...prev,
+                    grade: "B"
+                }
+            })
+        }
+
+        else if(score >= 50 && score <= 59){
+            setCourseDetails(prev => {
+                return {
+                    ...prev,
+                    grade: "C"
+                }
+            })
+        }
+
+        else if(score >= 45 && score <= 49){
+            setCourseDetails(prev => {
+                return {
+                    ...prev,
+                    grade: "D"
+                }
+            })
+        }
+
+        else if(score >= 0 && score <= 44){
+            setCourseDetails(prev => {
+                return {
+                    ...prev,
+                    grade: "F"
+                }
+            })
+        }
+    }
+
+    const checkGradesFive = (score) => {
+        if(score >= 70 && score <= 100){
+            setCourseDetails(prev => {
+                return {
+                    ...prev,
+                    grade: "A"
+                }
+            })
+        }
+
+        else if(score >= 60 && score <= 69){
+            setCourseDetails(prev => {
+                return {
+                    ...prev,
+                    grade: "B"
+                }
+            })
+        }
+
+        else if(score >= 50 && score <= 59){
+            setCourseDetails(prev => {
+                return {
+                    ...prev,
+                    grade: "C"
+                }
+            })
+        }
+
+        else if(score >= 45 && score <= 49){
+            setCourseDetails(prev => {
+                return {
+                    ...prev,
+                    grade: "D"
+                }
+            })
+        }
+
+        else if(score >= 44 && score <= 40){
+            setCourseDetails(prev => {
+                return {
+                    ...prev,
+                    grade: "E"
+                }
+            })
+        }
+
+        else if(score >= 0 && score <= 39){
+            setCourseDetails(prev => {
+                return {
+                    ...prev,
+                    grade: "F"
+                }
+            })
+        }
+
+        //To put the Credit unit and the Grade point of each course in different arrays.
+    // useEffect(() => {
+        
+    // }, [courseDetails.added])
+    
+    }
