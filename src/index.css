@@ -43,6 +43,15 @@ button.option:hover{
     transition: all ease-in-out .3s;
 }
 
+@media (max-width: 400px) {
+    table{
+        overflow-x: scroll;
+        background-color: black;
+        color: white;
+        width: 1rem;
+    }
+}
+
 th{
     @apply dark:text-gray-200 text-gray-600;
 }

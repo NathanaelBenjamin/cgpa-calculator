@@ -1,6 +1,7 @@
 import React, { useState, useContext } from 'react';
 import { AppContext } from '../../CONTEXT/AppContext';
 import ClearButton from './ClearButton';
+import Result from './Result';
 
 const CgpaForm = () => {
 
@@ -103,6 +104,8 @@ const CgpaForm = () => {
                     </div> 
                 }
             </div>
+
+            {values.cgpa && <Result text={`CGPA`} result={values.cgpa} />}
         </div>
     </div>
   )

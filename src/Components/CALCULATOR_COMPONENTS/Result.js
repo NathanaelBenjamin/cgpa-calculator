@@ -1,8 +1,20 @@
-import React from 'react';
+import React, { useState } from 'react';
 
-const Result = () => {
-  return (
-    <div>Result</div>
+const Result = ({ result, text, resultClass }) => {
+
+    // const [resultDescription, setResultDescription] = useState({
+    //     value: result,
+    //     class: ""
+    // });
+
+  return(
+    <div className='result bg-teal-700 text-gray-100 px-2 py-2 rounded'>
+        Here's your result!
+
+        <div>
+            {text}: {result} and you're on {}
+        </div>
+    </div>
   )
 }
 
