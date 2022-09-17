@@ -78,7 +78,7 @@ const GpaForm = ({ scale }) => {
         
         categories.map(item => {
             if(result && result >= item.lowerLimit && result <= item.upperLimit){
-               setResultClass(item.class);
+                setResultClass(item.class);
             }
             return true;
         });

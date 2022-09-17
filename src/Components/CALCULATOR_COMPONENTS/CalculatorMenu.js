@@ -13,6 +13,9 @@ const CalculatorMenu = () => {
   return (
     <div>
         <div className="scales flex justify-center gap-4">
+                <h1 className="font-bold text-2xl text-gray-200 my-3">
+                    Select your preferred scale
+                </h1>
                 <button className="option four"
                     onClick={() => {
                         changeMode(4)
