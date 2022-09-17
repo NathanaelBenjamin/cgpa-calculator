@@ -4,6 +4,7 @@ import ClearButton from './ClearButton';
 import CalculateButton from './CalculateButton';
 import { createLimits } from '../../Data/resultClasses';
 import Result from './Result';
+import { useEffect } from 'react';
 
 const GpaForm = ({ scale }) => {
 
@@ -75,6 +76,7 @@ const GpaForm = ({ scale }) => {
         const totalGradePoints = parameters.gradePoints.reduce((a,b) => a + b);
         const totalCreditUnits = parameters.creditUnits.reduce((a,b) => a + b);
         setResult(() => (totalGradePoints/totalCreditUnits).toFixed(2));
+<<<<<<< HEAD
         
         categories.map(item => {
             if(result && result >= item.lowerLimit && result <= item.upperLimit){
@@ -82,8 +84,28 @@ const GpaForm = ({ scale }) => {
             }
             return true;
         });
+=======
+>>>>>>> 37f4a58719a2e481f3b907c60d32666e9cc4c08e
         }
+
     }
+
+    const handleClass = ()=>{
+         categories.map((item) => {
+						if (
+							result &&
+							result >= item.lowerLimit &&
+							result <= item.upperLimit
+						) {
+							setResultClass(item.class);
+						}
+						return true;
+					});
+    }
+
+    useEffect(()=>{
+       handleClass()
+    },[result])
 
     const handleSubmit = (event) => {
         event.preventDefault();
