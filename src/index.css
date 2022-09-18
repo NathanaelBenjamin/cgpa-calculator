@@ -33,12 +33,12 @@ blockquote{
     font-family: 'Montserrat', sans-serif;
 }
 
-button.option{
+button.option-btn{
     background-color: #0f766e;
     @apply rounded px-4 py-2 text-gray-100 md:w-44 text-center;
 }
 
-button.option:hover{
+button.option-btn:hover{
     scale: 1.05;
     transition: all ease-in-out .3s;
 }
@@ -49,4 +49,16 @@ th{
 
 th, tr, td{
     @apply p-1 md:p-2 text-center;
+}
+
+.input-field{
+    @apply form-input w-full my-2 rounded;
+}
+
+.header{
+    @apply italic text-center text-xl dark:text-gray-200 text-gray-600;
+}
+
+.scale{
+    @apply flex flex-col gap-2 font-bold;
 }

@@ -1,10 +1,9 @@
-import React, {useContext, useState } from 'react';
+import React, {useEffect, useContext, useState } from 'react';
 import { AppContext } from '../../CONTEXT/AppContext';
 import ClearButton from './ClearButton';
 import CalculateButton from './CalculateButton';
 import { createLimits } from '../../Data/resultClasses';
 import Result from './Result';
-import { useEffect } from 'react';
 
 const GpaForm = ({ scale }) => {
 
@@ -76,7 +75,6 @@ const GpaForm = ({ scale }) => {
         const totalGradePoints = parameters.gradePoints.reduce((a,b) => a + b);
         const totalCreditUnits = parameters.creditUnits.reduce((a,b) => a + b);
         setResult(() => (totalGradePoints/totalCreditUnits).toFixed(2));
-<<<<<<< HEAD
         
         categories.map(item => {
             if(result && result >= item.lowerLimit && result <= item.upperLimit){
@@ -84,27 +82,27 @@ const GpaForm = ({ scale }) => {
             }
             return true;
         });
-=======
->>>>>>> 37f4a58719a2e481f3b907c60d32666e9cc4c08e
         }
 
     }
 
     const handleClass = ()=>{
-         categories.map((item) => {
-						if (
-							result &&
-							result >= item.lowerLimit &&
-							result <= item.upperLimit
-						) {
-							setResultClass(item.class);
-						}
-						return true;
-					});
+        categories.map((item) => {
+            if (
+                result &&
+                result >= item.lowerLimit &&
+                result <= item.upperLimit
+            ) {
+                setResultClass(item.class);
+            }
+            return true;
+        });
     }
 
     useEffect(()=>{
-       handleClass()
+
+       handleClass();
+
     },[result])
 
     const handleSubmit = (event) => {
@@ -129,9 +127,10 @@ const GpaForm = ({ scale }) => {
             onSubmit={(event) => handleSubmit(event)}
         >
             <div className="grid gap-1">
-                <input type="text" placeholder='Course name' className='form-input w-full my-2 rounded'
+                <input type="text" placeholder='Course name' className="input-field"
                     name="name"     
                     value={courseDetails.name}
+                    autoComplete={`off`}
                     onChange={(event) => {
                         handleChange(event.target)
                     }} 
@@ -140,7 +139,7 @@ const GpaForm = ({ scale }) => {
 
                 {/* {showWarning && <small className='text-red-300'>Course has been selected before!</small>} */}
 
-                <input type="number" placeholder='Course unit' className='form-input w-full my-2 rounded'
+                <input type="number" placeholder='Course unit' className="input-field"
                     name="unit"
                     value={courseDetails.unit}  
                     onChange={(event) => {
@@ -149,7 +148,7 @@ const GpaForm = ({ scale }) => {
                     required
                 />
 
-                <input type="number" placeholder='Score in course' className='form-input w-full my-2 rounded'
+                <input type="number" placeholder='Score in course' className="input-field"
                     name="score"
                     value={courseDetails.score}  
                     onChange={(event) => {

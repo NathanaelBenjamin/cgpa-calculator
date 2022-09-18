@@ -39,13 +39,13 @@ const Calculator = () => {
 
   return (
     <div className="flex justify-center items-center">
-    <AppContext.Provider value={{ borderStyles, setMode, courses, setCourses, parameters, setParameters, result, setResult, handleClearValues }}>
+    <AppContext.Provider value={{ borderStyles, setMode, courses, setCourses, parameters, setParameters, result, setResult, handleClearValues, mode }}>
         <div className='calculator w-[90%] min-h-[38rem] md:w-10/12 dark:bg-gray-600 bg-gray-200 rounded py-12 px-4 -mt-40 mb-12 shadow-md shadow-gray-700 dark:shadow-gray-400'>
 
             <CalculatorMenu />
 
             <div className="check-gp grid gap-8">
-                <h1 className='md:col-span-2 mt-4 text-center font-bold text-xl dark:text-gray-200 text-gray-600'>Calculate your GP.
+                <h1 className='header md:col-span-2 mt-8 -mb-4 '><span>Step 2: </span>Calculate your GP.
                 </h1>
                 {mode === "cgpa" ? <CgpaForm /> : (mode === 4 ? <GpaForm scale={4} /> : <GpaForm scale={5} />)}
             </div>

@@ -43,7 +43,7 @@ const CgpaForm = () => {
                 }}
             >
                 <div className="grid">
-                    <input type="text" placeholder='First Semester GP' className='form-input w-full my-2 rounded' 
+                    <input type="text" placeholder='First Semester GP' className='input-field' 
                     value={values.gp1}
                         onChange={(event) => {
                             setValues((prev) => {
@@ -56,7 +56,7 @@ const CgpaForm = () => {
                         }}
                     />
 
-                    <input type="text" placeholder='Second Semester GP' className='form-input w-full my-2 rounded' 
+                    <input type="text" placeholder='Second Semester GP' className='input-field' 
                         value={values.gp2}
                         onChange={(event) => {
                             setValues((prev) => {
