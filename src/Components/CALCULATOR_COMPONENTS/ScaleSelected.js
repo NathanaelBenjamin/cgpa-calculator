@@ -6,7 +6,7 @@ const ScaleSelected = ({ scaleText }) => {
   return (
     <div>
         <small>
-            <span>Scale {scaleText} activated</span>
+            <span>{scaleText} Scale activated</span>
             <span className="icon">
             <CheckCircleIcon sx={{ color: pink[500] }} />
             </span>
