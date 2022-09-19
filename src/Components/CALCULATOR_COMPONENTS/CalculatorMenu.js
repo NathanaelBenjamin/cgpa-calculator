@@ -25,7 +25,7 @@ const CalculatorMenu = () => {
                     >4.0 scale
                     </button>
 
-                    {mode === 4 && <ScaleSelected scaleText={4} />}
+                    {mode === 4 && <ScaleSelected scaleText={`4.0`} />}
                 </div>
 
                 <div className="scale scale-five">
@@ -36,7 +36,7 @@ const CalculatorMenu = () => {
                     >5.0 scale
                     </button>
 
-                   {mode === 5 && <ScaleSelected scaleText={5} />}
+                   {mode === 5 && <ScaleSelected scaleText={`5.0`} />}
                 </div>
 
                 <div className="scale cgpa">

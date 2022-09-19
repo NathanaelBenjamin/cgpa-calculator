@@ -1,11 +1,17 @@
-import React, { useState, useContext } from 'react';
+import React, { useState, useContext, useEffect } from 'react';
 import { AppContext } from '../../CONTEXT/AppContext';
 import ClearButton from './ClearButton';
 import Result from './Result';
+import WarningMessage from './WarningMessage';
 
 const CgpaForm = () => {
 
-    const { borderStyles } = useContext(AppContext);
+    const { borderStyles, resultClass, handleClass } = useContext(AppContext);
+
+    const [ formSubmitted, setformSubmitted] = useState({
+        gp1: null,
+        gp2: null
+    });
 
     const [ values, setValues ] = useState({
         gp1: "",
@@ -13,15 +19,54 @@ const CgpaForm = () => {
         cgpa: ""
     });
 
-    const calculateCGPA = () => {
+    const handleValueChange = (name, value) => {
         setValues(prev => {
+            return {...prev,
+            [name]: value}
+        });
+
+        value.length > 0 ? setformSubmitted(prev => {
             return {
-                gp1: prev.gp1,
-                gp2: prev.gp2,
-                cgpa: ((parseFloat(prev.gp1) + parseFloat(prev.gp2))/2).toFixed(2)
+                ...prev,
+                [name]: true
+            }
+        }) : setformSubmitted(prev => {
+            return {
+                ...prev,
+                [name]: false
             }
         })
+
+        console.log(formSubmitted);
     }
+
+    const calculateCGPA = () => {
+        if(values.gp1.length > 0 && values.gp2 > 0){
+            setValues(prev => {
+                return {
+                    gp1: prev.gp1,
+                    gp2: prev.gp2,
+                    cgpa: ((parseFloat(prev.gp1) + parseFloat(prev.gp2))/2).toFixed(2)
+                }
+            })
+
+            return true;
+        }
+
+        else{
+            setformSubmitted({
+                gp1: values.gp1.length > 0 ? true : false,
+                gp2: values.gp2.length > 0 ? true : false
+            });
+            return false;
+        }
+    }
+
+    useEffect(() => {
+
+        handleClass(values.cgpa) 
+
+    }, [values.cgpa]);
 
     const clearValues = () => {
         setValues(() => {
@@ -30,8 +75,14 @@ const CgpaForm = () => {
                 gp2: "",
                 cgpa: ""
             }
-        })
+        });
+
+        setformSubmitted({
+            gp1: null,
+            gp2: null
+        });
     }
+    
 
   return (
     <div>
@@ -43,31 +94,28 @@ const CgpaForm = () => {
                 }}
             >
                 <div className="grid">
-                    <input type="text" placeholder='First Semester GP' className='input-field' 
+                    <input type="number" placeholder='First Semester GP' className='input-field' 
+                    name="gp1"
+                    maxLength={3}
                     value={values.gp1}
-                        onChange={(event) => {
-                            setValues((prev) => {
-                                return {
-                                    gp1: event.target.value,
-                                    gp2: prev.gp2,
-                                    cgpa: prev.cgpa
-                                }
-                            });
+                    
+                        onChange={({target: {name: name, value:value}}) => {
+                            handleValueChange(name, value);
                         }}
                     />
 
-                    <input type="text" placeholder='Second Semester GP' className='input-field' 
+                        {( formSubmitted.gp1 === false) && <WarningMessage text={`First Semester GP field`} />} 
+
+                    <input type="number" placeholder='Second Semester GP' className='input-field' 
                         value={values.gp2}
-                        onChange={(event) => {
-                            setValues((prev) => {
-                                return {
-                                    gp1: prev.gp1,
-                                    gp2: event.target.value,
-                                    cgpa: prev.cgpa
-                                }
-                            });
+                        name="gp2"
+                        maxLength={3}
+                        onChange={({target: {name: name, value: value}}) => {
+                            handleValueChange(name, value);
                         }}
                     />
+
+                    {(formSubmitted.gp2 === false) && <WarningMessage text={`Second Semester GP field`} />}
                 </div>
 
                 <button className="w-44 flex gap-1 text-teal-700 bg-white py-2 px-4 hover:shadow-lg hover:shadow-teal-400 rounded transition duration-300">
@@ -105,7 +153,7 @@ const CgpaForm = () => {
                 }
             </div>
 
-            {values.cgpa && <Result text={`CGPA`} result={values.cgpa} />}
+            {values.cgpa && <Result text={`Cumulative Grade Point Average(CGPA)`} result={values.cgpa} resultClass={resultClass} />}
         </div>
     </div>
   )

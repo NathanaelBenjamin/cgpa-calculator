@@ -3,10 +3,12 @@ import GpaForm from './GpaForm';
 import CgpaForm from './CgpaForm';
 import { AppContext } from '../../CONTEXT/AppContext';
 import CalculatorMenu from './CalculatorMenu';
+import { createLimits } from '../../Data/resultClasses';
+
 
 const Calculator = () => {
 
-    const [mode, setMode] = useState(4);
+    const [ mode, setMode ] = useState(4);
 
     const borderStyles = (value=2) => {
         const tableBorderStyle = `border-collapse border border-rose-700`;
@@ -37,9 +39,26 @@ const Calculator = () => {
         })    
     }
 
+    const [ resultClass, setResultClass ] = useState("");
+    
+    const { grades, categories } = createLimits(mode);
+
+    const handleClass = (result)=>{
+        categories.map((item) => {
+            if (
+                result &&
+                result >= item.lowerLimit &&
+                result <= item.upperLimit
+            ) {
+                setResultClass(item.class);
+            }
+            return true;
+        });
+    }
+
   return (
     <div className="flex justify-center items-center">
-    <AppContext.Provider value={{ borderStyles, setMode, courses, setCourses, parameters, setParameters, result, setResult, handleClearValues, mode }}>
+    <AppContext.Provider value={{ borderStyles, setMode, courses, setCourses, parameters, setParameters, result, setResult, handleClearValues, mode, resultClass, setResultClass, handleClass, grades, categories }}>
         <div className='calculator w-[90%] min-h-[38rem] md:w-10/12 dark:bg-gray-600 bg-gray-200 rounded py-12 px-4 mt-12 md:-mt-20 mb-12 shadow-md shadow-gray-700 dark:shadow-gray-400'>
 
             <CalculatorMenu />

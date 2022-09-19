@@ -1,15 +1,9 @@
 import React from 'react';
 
 const Result = ({ result, text, resultClass }) => {
-
-    // const [resultDescription, setResultDescription] = useState({
-    //     value: result,
-    //     class: ""
-    // });
-
   return(
-    <div className='result bg-teal-700 text-gray-100 px-2 py-2 rounded'>
-        Here's your result!
+    <div className='result bg-pink-600 text-gray-100 px-3 py-4 rounded md:col-span-2 text-center'>
+        <h1 className='text-lg font-bold mb-2'>Here's your result!</h1>
 
         <div>
             {text}: {result} {resultClass && <span> and you're on {resultClass}.</span>}

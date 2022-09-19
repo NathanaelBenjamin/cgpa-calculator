@@ -52,7 +52,7 @@ th, tr, td{
 }
 
 .input-field{
-    @apply form-input w-full my-2 rounded;
+    @apply form-input w-full my-2 rounded relative;
 }
 
 .header{
@@ -61,4 +61,10 @@ th, tr, td{
 
 .scale{
     @apply flex flex-col gap-2 font-bold;
+}
+
+input[type=number]::-webkit-inner-spin-button, 
+input[type=number]::-webkit-outer-spin-button { 
+  -webkit-appearance: none; 
+  margin: 0; 
 }

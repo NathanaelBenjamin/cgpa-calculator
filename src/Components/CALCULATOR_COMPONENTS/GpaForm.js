@@ -2,14 +2,12 @@ import React, {useEffect, useContext, useState } from 'react';
 import { AppContext } from '../../CONTEXT/AppContext';
 import ClearButton from './ClearButton';
 import CalculateButton from './CalculateButton';
-import { createLimits } from '../../Data/resultClasses';
 import Result from './Result';
+import WarningMessage from './WarningMessage';
 
 const GpaForm = ({ scale }) => {
 
-    const { grades, categories } = createLimits(scale);
-
-    const { borderStyles, courses, setCourses, parameters, setParameters, result, setResult, handleClearValues } = useContext(AppContext);
+    const { borderStyles, courses, setCourses, parameters, setParameters, result, setResult, handleClearValues, resultClass, setResultClass, handleClass, grades, categories } = useContext(AppContext);
 
     const [ courseDetails, setCourseDetails ] = useState({
         name: "",
@@ -18,8 +16,6 @@ const GpaForm = ({ scale }) => {
         grade: "",
         gradePoint: ""
     });
-    
-    const [ resultClass, setResultClass ] = useState("");
     
     const assignGrades = (score) => {
         grades.map((item) => {
@@ -48,6 +44,8 @@ const GpaForm = ({ scale }) => {
                 [name]: value
             }
         });
+
+        setShowWarning(false);
     }
 
     const checkGrades = () => {
@@ -71,54 +69,45 @@ const GpaForm = ({ scale }) => {
     }
 
     const calculateResult = () => {
+        setShowWarning(false);
         if(parameters.creditUnits.length > 0){
         const totalGradePoints = parameters.gradePoints.reduce((a,b) => a + b);
         const totalCreditUnits = parameters.creditUnits.reduce((a,b) => a + b);
         setResult(() => (totalGradePoints/totalCreditUnits).toFixed(2));
-        
-        categories.map(item => {
-            if(result && result >= item.lowerLimit && result <= item.upperLimit){
-                setResultClass(item.class);
-            }
-            return true;
-        });
         }
-
-    }
-
-    const handleClass = ()=>{
-        categories.map((item) => {
-            if (
-                result &&
-                result >= item.lowerLimit &&
-                result <= item.upperLimit
-            ) {
-                setResultClass(item.class);
-            }
-            return true;
-        });
     }
 
     useEffect(()=>{
 
-       handleClass();
+       handleClass(result);
 
-    },[result])
+    }, [result])
+
+    const [ showWarning, setShowWarning ] = useState(false);
 
     const handleSubmit = (event) => {
         event.preventDefault();
-        setCourses(prev => {
-            return [...prev, courseDetails];
-        });  
-        checkGrades();
-        setCourseDetails(() => {
-            return {
-                name: "",
-                unit: "",
-                score: "",
-                grade: "",
-            }
-        })
+        let checkCourse = courses.filter(course => {
+            return course.name === courseDetails.name;
+        });
+        if(!checkCourse.length > 0){
+            setCourses(prev => {
+                return [...prev, courseDetails];
+            });  
+            checkGrades();
+            setCourseDetails(() => {
+                return {
+                    name: "",
+                    unit: "",
+                    score: "",
+                    grade: "",
+                }
+            });
+        }
+
+        else{
+            setShowWarning(true);
+        }
     }
 
     return (
@@ -137,7 +126,7 @@ const GpaForm = ({ scale }) => {
                     required
                 />
 
-                {/* {showWarning && <small className='text-red-300'>Course has been selected before!</small>} */}
+                {showWarning && <WarningMessage text={""} warning={`Course has been added before`} />}
 
                 <input type="number" placeholder='Course unit' className="input-field"
                     name="unit"
@@ -200,20 +189,21 @@ const GpaForm = ({ scale }) => {
                 courses.length > 0 && 
                 <div className="buttons flex flex-col gap-3 md:flex-row">
                     <CalculateButton clickFunction={() => {
-                        calculateResult()
+                        calculateResult();
                     }} 
                     />
 
                     <ClearButton 
                         clickFunction={() => {
-                            handleClearValues()
+                            handleClearValues();
+                            setShowWarning(false);
                         }}
                     />
                 </div>
             }
         </div>
 
-        {result && <Result result={result} text={`GPA`} resultClass={resultClass} />}
+        {result && <Result result={result} text={`Grade Point Average(GPA)`} resultClass={resultClass} />}
     </div>
   )
 }
