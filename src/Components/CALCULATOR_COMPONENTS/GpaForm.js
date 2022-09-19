@@ -7,7 +7,7 @@ import WarningMessage from './WarningMessage';
 
 const GpaForm = ({ scale }) => {
 
-    const { borderStyles, courses, setCourses, parameters, setParameters, result, setResult, handleClearValues, resultClass, setResultClass, handleClass, grades, categories } = useContext(AppContext);
+    const { borderStyles, courses, setCourses, parameters, setParameters, result, setResult, handleClearValues, resultClass, handleClass, grades } = useContext(AppContext);
 
     const [ courseDetails, setCourseDetails ] = useState({
         name: "",
