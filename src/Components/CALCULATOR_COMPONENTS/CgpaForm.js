@@ -87,7 +87,7 @@ const CgpaForm = () => {
   return (
     <div>
         <div className='grid md:grid-cols-4 gap-6'>
-            <form className='bg-teal-700 h-80 py-8 px-5 rounded bg-gradient-to-br from-teal-700 to-teal-600 flex flex-col justify-between md:col-span-2'
+            <form className='bg-teal-700 h-[22rem] min-h-full py-8 px-5 rounded bg-gradient-to-br from-teal-700 to-teal-600 flex flex-col justify-between md:col-span-2'
                 onSubmit={(event) => {
                     event.preventDefault()
                     calculateCGPA();

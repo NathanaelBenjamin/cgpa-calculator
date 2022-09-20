@@ -110,7 +110,7 @@ const GpaForm = ({ scale }) => {
 
     return (
     <div className='grid grid-cols-1 items-center md:items-start md:grid-cols-2 gap-8'>
-        <form className='bg-teal-700 h-80 py-8 px-5 rounded bg-gradient-to-br from-teal-700 to-teal-600 flex flex-col justify-between md:w-full'
+        <form className='bg-teal-700 min-h-full h-[22rem] py-8 px-5 rounded bg-gradient-to-br from-teal-700 to-teal-600 flex flex-col justify-between md:w-full'
             onSubmit={(event) => handleSubmit(event)}
         >
             <div className="grid gap-1">
