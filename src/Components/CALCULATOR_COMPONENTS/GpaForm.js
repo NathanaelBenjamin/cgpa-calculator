@@ -7,7 +7,7 @@ import WarningMessage from './WarningMessage';
 
 const GpaForm = ({ scale }) => {
 
-    const { borderStyles, courses, setCourses, parameters, setParameters, result, setResult, handleClearValues, resultClass, handleClass, grades } = useContext(AppContext);
+    const { borderStyles, courses, setCourses, parameters, setParameters, result, setResult, handleClearValues, resultClass, handleClass, grades, categories } = useContext(AppContext);
 
     const [ courseDetails, setCourseDetails ] = useState({
         name: "",
@@ -64,8 +64,6 @@ const GpaForm = ({ scale }) => {
                 creditUnits: [parseInt(courseDetails.unit)]
             }
         })
-
-        console.log(result)
     }
 
     const calculateResult = () => {

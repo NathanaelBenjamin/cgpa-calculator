@@ -2,8 +2,12 @@
 @tailwind components;
 @tailwind utilities;
 
+@import url('https://fonts.googleapis.com/css2?family=Darker+Grotesque:wght@300;400;500;600;700&family=Montez&family=Montserrat:wght@200;300;400;500;600&display=swap');
+
 *{
-    font-family: 'Montserrat', sans-serif;
+    /* font-family: 'Montserrat', sans-serif; */
+    font-family: 'Darker Grotesque', sans-serif;
+    @apply text-lg;
 }
 
 .body-container{
@@ -30,7 +34,7 @@ blockquote{
 }
 
 .quote-author{
-    font-family: 'Montserrat', sans-serif;
+    font-family: 'Darker Grotesque', sans-serif;
 }
 
 button.option-btn{
@@ -43,12 +47,8 @@ button.option-btn:hover{
     transition: all ease-in-out .3s;
 }
 
-th{
-    @apply dark:text-gray-200 text-gray-600;
-}
-
 th, tr, td{
-    @apply p-1 md:p-2 text-center;
+    @apply p-1 md:p-2 text-center dark:text-gray-200 text-gray-600;
 }
 
 .input-field{
@@ -67,8 +67,4 @@ input[type=number]::-webkit-inner-spin-button,
 input[type=number]::-webkit-outer-spin-button { 
   -webkit-appearance: none; 
   margin: 0; 
-}
-
-.result{
-    font-family: 'Darker Grotesque', sans-serif;
 }
