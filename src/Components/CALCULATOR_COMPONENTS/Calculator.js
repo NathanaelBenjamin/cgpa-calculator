@@ -59,7 +59,7 @@ const Calculator = () => {
   return (
     <div className="flex justify-center items-center">
     <AppContext.Provider value={{ borderStyles, setMode, courses, setCourses, parameters, setParameters, result, setResult, handleClearValues, mode, resultClass, setResultClass, handleClass, grades, categories }}>
-        <div className='calculator flex justify-center items-center w-[90%] min-h-[38rem] md:w-10/12 dark:bg-gray-600 bg-gray-200 rounded py-12 px-4 mt-12 md:-mt-20 mb-12 shadow-md shadow-gray-700 dark:shadow-gray-400'>
+        <div className='calculator flex flex-col items-center w-[90%] min-h-[38rem] md:w-10/12 dark:bg-gray-600 bg-gray-200 rounded py-12 px-4 mt-12 md:-mt-20 mb-12 shadow-md shadow-gray-700 dark:shadow-gray-400'>
 
             <CalculatorMenu />
 
